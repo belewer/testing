@@ -62,5 +62,16 @@ pipeline {
             }
         }
     }
+
+
+    stage('Checkmarx') {
+      steps {
+        container('docker') {
+          sh 'docker run -t -v ${WORKSPACE}:/path checkmarx/kics:latest scan -p /path -o "/path/"'
+        }
+      }
+    }  
+
+
 }
 }
