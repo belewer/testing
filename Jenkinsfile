@@ -67,7 +67,7 @@ pipeline {
                 scannerHome = tool 'sonar-scanner-minikube'
             }
             withSonarQubeEnv('sonar-minikube') {
-                sh 'apt-get upgrade && apt-get update && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && apt-get install nodejs npm -y'
+                sh 'apt-get upgrade && apt-get update && curl -fsSL https://deb.nodesource.com/setup_16.x | bash -'
                 sh "${scannerHome}/bin/sonar-scanner"
             }
         }
