@@ -53,12 +53,12 @@ pipeline {
     }     
 
     stage('Sonar') {
-      steps {
-        String scannerHome = tool 'SonarScanner 4.0';
+
+        def scannerHome = tool 'SonarScanner 4.0';
         withSonarQubeEnv('sonar-minikube') { // If you have configured more than one global server connection, you can specify its name
         sh "${scannerHome}/bin/sonar-scanner"
       }
-    }        
+     
     }
 }
 }
