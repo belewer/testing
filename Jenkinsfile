@@ -59,14 +59,11 @@ pipeline {
 
     stage('Sonar') {
         steps{
-            container('node') {
-                script {
-                    scannerHome = tool 'sonar-scanner-minikube'
-                }
-                withSonarQubeEnv('sonar-minikube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-
+            script {
+                scannerHome = tool 'sonar-scanner-minikube'
+            }
+            withSonarQubeEnv('sonar-minikube') {
+                sh "${scannerHome}/bin/sonar-scanner"
             }
         }
     }
