@@ -54,11 +54,10 @@ pipeline {
 
     stage('Sonar') {
         steps{
-        // def scannerHome = tool 'SonarScanner 4.0';
-        withSonarQubeEnv('sonar-minikube') { // If you have configured more than one global server connection, you can specify its name
-        input('pause')
-        sh "sonar-scanner"
-      }
+            // def scannerHome = tool 'SonarScanner 4.0';
+            withSonarQubeEnv('sonar-minikube') { // If you have configured more than one global server connection, you can specify its name
+            sh 'mvn clean package sonar:sonar'
+        }
         }
     }
 }
