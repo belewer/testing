@@ -1,7 +1,5 @@
 pipeline {
-    options {
-        ansiColor('xterm')
-    }
+
     agent {
         kubernetes {
         yaml '''
