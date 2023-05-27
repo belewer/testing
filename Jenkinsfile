@@ -1,8 +1,5 @@
 pipeline {
     agent {
-    options {
-        ansiColor('xterm')
-        }        
         kubernetes {
         yaml '''
             apiVersion: v1
@@ -29,6 +26,9 @@ pipeline {
             '''
         }
     }
+    options {
+        ansiColor('xterm')
+    }    
     stages {
 
         stage('Install') {
