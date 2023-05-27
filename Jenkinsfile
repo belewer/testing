@@ -31,7 +31,7 @@ pipeline {
     stage('Install') {
       steps {
         container('node') {
-          sh 'npm install --production'
+          sh 'npm install'
         }
       }
     }  
