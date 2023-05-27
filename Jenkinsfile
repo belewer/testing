@@ -63,6 +63,7 @@ pipeline {
                 scannerHome = tool 'sonar-scanner-minikube'
             }
             withSonarQubeEnv('sonar-minikube') {
+                sh 'apk add nodejs npm'
                 sh "${scannerHome}/bin/sonar-scanner"
             }
         }
