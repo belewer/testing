@@ -25,10 +25,7 @@ pipeline {
                 path: /var/run/docker.sock    
             '''
         }
-    }
-    options {
-        ansiColor('xterm')
-    }    
+    } 
     stages {
 
         stage('Install') {
