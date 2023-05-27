@@ -68,7 +68,7 @@ pipeline {
       steps {
         container('docker') {
           sh 'docker run -t -v ${WORKSPACE}:/path checkmarx/kics:latest scan -p /path -o "/path/"'
-          sh 'cat results.json'
+          sh 'ls -ltra'
         }
       }
     }  
