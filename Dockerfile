@@ -6,7 +6,7 @@ COPY ./index.js ./
 COPY ./package*.json ./
 
 RUN apk add nodejs npm curl --no-cache && \
-    npm install --production && \
+    npm install --production --ignore-scripts && \
     curl -sf https://gobinaries.com/tj/node-prune | sh && \
     node-prune
 
