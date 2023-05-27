@@ -10,6 +10,8 @@ pipeline {
         apiVersion: v1
         kind: Pod
         spec:
+          securityContext:
+            runAsUser: 0
           containers:
           - name: node
             image: node:16-alpine
@@ -21,6 +23,8 @@ pipeline {
             command:
             - cat
             tty: true
+            securityContext:
+                runAsUser: 0            
             volumeMounts:
              - mountPath: /var/run/docker.sock
                name: docker-sock
