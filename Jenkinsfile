@@ -44,7 +44,7 @@ pipeline {
         sh "ls -al"
         }
 
-        // echo '\x1b[35m ############ STAGE: Install dependencies \x1b[35m'
+        echo '\033[35m############ STAGE: Install dependencies\033[35m'
         container('node') {
           sh 'npm install'
         }
