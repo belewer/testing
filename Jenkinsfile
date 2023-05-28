@@ -40,9 +40,7 @@ pipeline {
     stage('Install') {
       steps {
 
-
-
-        echo '\033[35m############ STAGE: Install dependencies'
+        echo '\033[35m############ STAGE: Install dependencies\033[0m'
         container('node') {
           sh 'npm install'
         }
