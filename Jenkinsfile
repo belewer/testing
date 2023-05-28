@@ -39,6 +39,7 @@ pipeline {
 
     stage('Install') {
       steps {
+        sh 'echo \x1b[35m ############ STAGE: Install dependencies \x1b[35m'
         container('node') {
           sh 'npm install'
         }
