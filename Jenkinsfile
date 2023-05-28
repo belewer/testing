@@ -39,7 +39,12 @@ pipeline {
 
     stage('Install') {
       steps {
-        echo '\x1b[35m ############ STAGE: Install dependencies \x1b[35m'
+
+        ansiColor('css') {
+        sh "ls -al"
+        }
+
+        // echo '\x1b[35m ############ STAGE: Install dependencies \x1b[35m'
         container('node') {
           sh 'npm install'
         }
