@@ -90,8 +90,8 @@ pipeline {
         container('docker') {
           script {
             sh 'apk add jq'
-            env.VERSION = sh(returnStdout:true, script:'jq -r .version package.json')
-            sh 'docker build -t testing:\${env.VERSION} .'
+            env.VERSION = sh(returnStdout: true, script:'jq -r .version package.json')
+            sh 'docker build -t testing:\${VERSION} .'
           }
         }
       }
