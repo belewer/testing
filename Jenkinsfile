@@ -105,22 +105,13 @@ pipeline {
       }
     }  
 
-
-    stage('Build') {
-      steps {
-        container('docker') {
-          sh "docker tag testing:${env.VERSION} jovilon/testing:${env.VERSION}"
-        }
-      }
-    }  
-
-
     stage('Publish') {
       steps {
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
               sh "docker login -u $USER -p $PASS"
               sh "docker tag testing:${env.VERSION} jovilon/testing:${env.VERSION}"
+              sh "docker push jovilon/testing:${env.VERSION}"
           }
         }
       }
