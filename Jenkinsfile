@@ -110,7 +110,7 @@ pipeline {
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
               sh "docker login -u $USER -p $PASS"
-              sh "docker tag testing:${env.VERSION} jovilon/testing:${env.VERSION}"
+              sh 'docker tag testing:\${VERSION} jovilon/testing:\${VERSION}'
               sh "docker push jovilon/testing:${env.VERSION}"
           }
         }
