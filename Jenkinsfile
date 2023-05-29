@@ -88,16 +88,16 @@ pipeline {
     stage('Build') {
       steps {
         container('docker') {
-          sh 'apk add jq'
-          env.VERSION = sh(returnStdout:true, script:'jq -r .version package.json')
-          withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-              sh "docker build -t testing:${env.VERSION} ."
+          script {
+            sh 'apk add jq'
+            env.VERSION = sh(returnStdout:true, script:'jq -r .version package.json')
+            sh "docker build -t testing:${env.VERSION} ."
           }
         }
       }
-    }  
+    }
 
-    stage('Checkmarx') {
+    stage('Scan') {
       steps {
         container('docker') {
           sh "docker run aquasec/trivy image testing:${env.VERSION}"
@@ -105,6 +105,26 @@ pipeline {
       }
     }  
 
+
+    stage('Build') {
+      steps {
+        container('docker') {
+          sh "docker tag testing:${env.VERSION} jovilon/testing:${env.VERSION}"
+        }
+      }
+    }  
+
+
+    stage('Publish') {
+      steps {
+        container('docker') {
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+              sh "docker login -u $USER -p $PASS"
+              sh "docker tag testing:${env.VERSION} jovilon/testing:${env.VERSION}"
+          }
+        }
+      }
+    }
 
 
 }
