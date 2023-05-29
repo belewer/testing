@@ -10,8 +10,6 @@ pipeline {
         apiVersion: v1
         kind: Pod
         spec:
-          securityContext:
-            runAsUser: 0
           containers:
           - name: node
             image: node:16-alpine
@@ -22,9 +20,7 @@ pipeline {
             image: docker:latest
             command:
             - cat
-            tty: true
-            securityContext:
-                runAsUser: 0            
+            tty: true         
             volumeMounts:
              - mountPath: /var/run/docker.sock
                name: docker-sock
@@ -85,6 +81,26 @@ pipeline {
       steps {
         container('docker') {
           sh 'docker run -t -v ${WORKSPACE}:/path checkmarx/kics:latest scan -p /path -o "/path/"'
+        }
+      }
+    }  
+
+    stage('Build') {
+      steps {
+        container('docker') {
+          sh 'apk add jq'
+          env.VERSION = sh(returnStdout:true, script:'jq -r .version package.json')
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+              sh "docker build -t testing:${env.VERSION} ."
+          }
+        }
+      }
+    }  
+
+    stage('Checkmarx') {
+      steps {
+        container('docker') {
+          sh "docker run aquasec/trivy image testing:${env.VERSION}"
         }
       }
     }  
