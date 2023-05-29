@@ -100,7 +100,7 @@ pipeline {
     stage('Scan') {
       steps {
         container('docker') {
-          sh "docker run aquasec/trivy image testing:${env.VERSION}"
+          sh "docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image testing:${env.VERSION}"
         }
       }
     }  
