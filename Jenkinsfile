@@ -91,8 +91,8 @@ pipeline {
           script {
             sh 'apk add jq'
             env.VERSION = sh(returnStdout:true, script:'jq -r .version package.json')
+            sh 'docker build -t testing:\${env.VERSION} .'
           }
-          sh 'docker build -t testing:\${env.VERSION} .'
         }
       }
     }
