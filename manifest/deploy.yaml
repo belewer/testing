@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: testing
+  name: testing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testing
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: testing
+    spec:
+      containers:
+      - image: jovilon/testing:1.0.0
+        name: testing
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
