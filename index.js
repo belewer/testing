@@ -244,22 +244,26 @@ app.get('/', (req, res) => {
         <div class="col-sm-8">
           <h2>About Company Page</h2><br>
           <table class="table">
-          <th>
-            <td>Variable</td>
-            <td>Valor</td>          
-          </th>
-          <tr>
-            <td>NODE_USER</td>
-            <td>${NODE_USER}</td>
-          </tr>
-          <tr>
-            <td>NODE_PASS</td>
-            <td>${NODE_PASS}</td>
-          </tr>
-          <tr>
-            <td>TOKEN</td>
-            <td>${TOKEN}</td>
-          </tr>
+          <thead>
+            <th>
+              <td>Variable</td>
+              <td>Valor</td>          
+            </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NODE_USER</td>
+              <td>${NODE_USER}</td>
+            </tr>
+            <tr>
+              <td>NODE_PASS</td>
+              <td>${NODE_PASS}</td>
+            </tr>
+            <tr>
+              <td>TOKEN</td>
+              <td>${TOKEN}</td>
+            </tr>
+          </tbody>
         </table>          
           <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
