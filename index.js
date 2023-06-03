@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 app.disable('x-powered-by');
-const port = '3000';
+const port = 3000;
 const NODE_USER = process.env.NODE_USER || 'fake';
 const NODE_PASS = process.env.NODE_PASS || 'fake';
 const TOKEN = process.env.TOKEN || 'fake';
