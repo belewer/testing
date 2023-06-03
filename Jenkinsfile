@@ -125,11 +125,9 @@ pipeline {
     stage('Deploy') {
       steps {
         container('helm') {
-          sh '''
-            mv chart/testing/values.yaml chart/testing/values_OLD.yaml
-            sed s'/tag: "1.0.0"/tag: "\${env.VERSION}"/' chart/testing/values_OLD.yaml > chart/testing/values.yaml
-            helm upgrade testing chart/testing/ -f chart/testing/values.yaml -n apps
-          '''
+          sh "mv chart/testing/values.yaml chart/testing/values_OLD.yaml"
+          sh "sed 's/tag: .../tag: ${env.VERSION}/' chart/testing/values_OLD.yaml > chart/testing/values.yaml"
+          sh "helm upgrade --install testing chart/testing/ -f chart/testing/values.yaml -n apps"
         }
       }
     }  
