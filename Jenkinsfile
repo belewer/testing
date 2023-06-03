@@ -1,3 +1,5 @@
+String VERSION_BUILD
+
 pipeline {
 
     // options {
@@ -96,6 +98,7 @@ pipeline {
           script {
             sh 'apk add jq'
             env.VERSION = sh(returnStdout: true, script:'jq -r .version package.json')
+            VERSION_BUILD = env.VERSION
             sh 'docker build -t testing:\${VERSION} .'
           }
         }
@@ -126,9 +129,9 @@ pipeline {
       steps {
         container('helm') {
           script {
-            env.VERSION = "${env.VERSION}"
+            
             sh "mv chart/testing/values.yaml chart/testing/values_OLD.yaml"
-            sh "sed 's/tag: .../tag: \${VERSION}/' chart/testing/values_OLD.yaml > chart/testing/values.yaml"
+            sh "sed 's/tag: ...../tag: ${VERSION_BUILD}/' chart/testing/values_OLD.yaml > chart/testing/values.yaml"
             sh "helm upgrade --install testing chart/testing/ -f chart/testing/values.yaml -n apps"
           }
         }
