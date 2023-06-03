@@ -16,6 +16,11 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: helm
+            image: alpine/helm
+            command:
+            - cat
+            tty: true
           - name: docker
             image: docker:latest
             command:
@@ -116,6 +121,17 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy') {
+      steps {
+        container('helm') {
+          sh '''
+            echo deploy
+          '''
+        }
+      }
+    }  
+
 
 
 }

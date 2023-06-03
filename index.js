@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 app.disable('x-powered-by');
 const port = '3000';
+const NODE_USER = process.env.NODE_USER || 'fake';
+const NODE_PASS = process.env.NODE_PASS || 'fake';
+const TOKEN = process.env.TOKEN || 'fake';
 
 app.get('/', (req, res) => {
   res.send(`
@@ -225,6 +228,24 @@ app.get('/', (req, res) => {
     <div class="jumbotron text-center">
       <h1>Company</h1> 
       <p>We specialize in blablabla</p> 
+      <table>
+        <th>
+          <td>Variable</td>
+          <td>Valor</td>          
+        </th>
+        <tr>
+          <td>NODE_USER</td>
+          <td>${NODE_USER}</td>
+        </tr>
+        <tr>
+          <td>NODE_PASS</td>
+          <td>${NODE_PASS}</td>
+        </tr>
+        <tr>
+          <td>TOKEN</td>
+          <td>${TOKEN}</td>
+        </tr>
+      </table>
       <form>
         <div class="input-group">
           <input type="email" class="form-control" size="50" placeholder="Email Address" required>
