@@ -126,7 +126,7 @@ pipeline {
       steps {
         container('helm') {
           sh '''
-            echo deploy
+            helm upgrade --install chart/testing/ -f chart/testinf/values.yaml -n apps
           '''
         }
       }
