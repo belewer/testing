@@ -228,24 +228,6 @@ app.get('/', (req, res) => {
     <div class="jumbotron text-center">
       <h1>Company</h1> 
       <p>We specialize in blablabla</p> 
-      <table>
-        <th>
-          <td>Variable</td>
-          <td>Valor</td>          
-        </th>
-        <tr>
-          <td>NODE_USER</td>
-          <td>${NODE_USER}</td>
-        </tr>
-        <tr>
-          <td>NODE_PASS</td>
-          <td>${NODE_PASS}</td>
-        </tr>
-        <tr>
-          <td>TOKEN</td>
-          <td>${TOKEN}</td>
-        </tr>
-      </table>
       <form>
         <div class="input-group">
           <input type="email" class="form-control" size="50" placeholder="Email Address" required>
@@ -261,6 +243,24 @@ app.get('/', (req, res) => {
       <div class="row">
         <div class="col-sm-8">
           <h2>About Company Page</h2><br>
+          <table class="table">
+          <th>
+            <td>Variable</td>
+            <td>Valor</td>          
+          </th>
+          <tr>
+            <td>NODE_USER</td>
+            <td>${NODE_USER}</td>
+          </tr>
+          <tr>
+            <td>NODE_PASS</td>
+            <td>${NODE_PASS}</td>
+          </tr>
+          <tr>
+            <td>TOKEN</td>
+            <td>${TOKEN}</td>
+          </tr>
+        </table>          
           <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           <br><button class="btn btn-default btn-lg">Get in Touch</button>
