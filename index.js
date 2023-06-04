@@ -5,6 +5,7 @@ const port = 3000;
 const NODE_USER = process.env.NODE_USER || 'fake';
 const NODE_PASS = process.env.NODE_PASS || 'fake';
 const TOKEN = process.env.TOKEN || 'fake';
+const PG_HOST = TESTING_POSTGRESQL_SERVICE_HOST;
 
 app.get('/', (req, res) => {
   res.send(`
@@ -264,6 +265,10 @@ app.get('/', (req, res) => {
             <tr>
               <td>TOKEN</td>
               <td>${TOKEN}</td>
+            </tr>
+            <tr>
+              <td>PG_HOST</td>
+              <td>${PG_HOST}</td>
             </tr>
           </tbody>
         </table>            

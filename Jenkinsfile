@@ -128,7 +128,8 @@ pipeline {
       steps {
         container('helm') {
           script {
-            sh "helm upgrade --install testing chart/testing/ -f chart/testing/values.yaml -n apps --set image.tag=${VERSION_BUILD}"
+            sh "helm dependency build chart/testing/"
+            sh "helm upgrade --install testing chart/testing/ -f chart/testing/values.yaml -n apps --set image.tag=${VERSION_BUILD} --dependency-update"
           }
         }
       }
