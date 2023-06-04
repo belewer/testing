@@ -1,5 +1,6 @@
 const express = require('express');
-// const pgp = require('pg-promise')();
+const {Client} = require('pg');
+
 const app = express();
 app.disable('x-powered-by');
 const port = 3000;
@@ -7,7 +8,22 @@ const NODE_USER = process.env.NODE_USER || 'fake';
 const NODE_PASS = process.env.NODE_PASS || 'fake';
 const TOKEN = process.env.TOKEN || 'fake';
 const PG_HOST = process.env.TESTING_POSTGRESQL_SERVICE_HOST;
-// const db = pgp(`postgres://pepe:123456@${PG_HOST}:port/database`);
+const PG_PORT = process.env.TESTING_POSTGRESQL_SERVICE_PORT;
+
+const client = new Client({
+  host: PG_HOST,
+  port: PG_PORT,
+  database: 'pepe_db',
+  user: 'pepe',
+  password: '123456',
+});
+
+client.connect((err) => {
+  client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
+    console.log(err ? err.stack : res.rows[0].message);
+    client.end();
+  });
+});
 
 app.get('/', (req, res) => {
   res.send(`
