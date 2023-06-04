@@ -130,10 +130,8 @@ pipeline {
         container('helm') {
           script {
             env.VERSION_BUILD = VERSION_BUILD.trim()
-            sh 'echo "sed -i s"/tag:.* /tag: \${VERSION} /" chart/testing/values_OLD.yaml > chart/testing/values.yaml"'
             sh "mv chart/testing/values.yaml chart/testing/values_OLD.yaml"
-            sh "perl -pi -e 's/tag:.*/ ${VERSION_BUILD}/' chart/testing/values_OLD.yaml > chart/testing/values.yaml"
-            // sh "sed -i s'#tag:.* #tag: ${VERSION_BUILD}#' chart/testing/values_OLD.yaml > chart/testing/values.yaml"
+            sh "sed -i s'@tag:.* @tag: ${VERSION_BUILD}@' chart/testing/values_OLD.yaml > chart/testing/values.yaml"
             sh "helm upgrade --install testing chart/testing/ -f chart/testing/values.yaml -n apps"
           }
         }
