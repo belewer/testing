@@ -13,9 +13,9 @@ const PG_HOST = process.env.TESTING_POSTGRESQL_SERVICE_HOST;
 const client = new Client({
   host: process.env.TESTING_POSTGRESQL_SERVICE_HOST,
   port: process.env.TESTING_POSTGRESQL_SERVICE_PORT,
-  database: 'pepe_db',
+  database: 'pepedb',
   user: 'pepe',
-  password: '123456',
+  password: 'pepepass',
 });
 
 client.connect((err) => {
