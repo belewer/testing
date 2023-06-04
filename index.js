@@ -1,11 +1,13 @@
 const express = require('express');
+const pgp = require('pg-promise')();
 const app = express();
 app.disable('x-powered-by');
 const port = 3000;
 const NODE_USER = process.env.NODE_USER || 'fake';
 const NODE_PASS = process.env.NODE_PASS || 'fake';
 const TOKEN = process.env.TOKEN || 'fake';
-const PG_HOST = TESTING_POSTGRESQL_SERVICE_HOST;
+const PG_HOST = process.env.TESTING_POSTGRESQL_SERVICE_HOST;
+// const db = pgp(`postgres://pepe:123456@${PG_HOST}:port/database`);
 
 app.get('/', (req, res) => {
   res.send(`
