@@ -1,5 +1,5 @@
 const express = require('express');
-const pgp = require('pg-promise')();
+// const pgp = require('pg-promise')();
 const app = express();
 app.disable('x-powered-by');
 const port = 3000;
