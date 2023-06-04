@@ -18,7 +18,13 @@ const client = new Client({
   password: '123456',
 });
 
-client.connect();
+client.connect((err) => {
+  if (err) {
+    console.log('Error de conexion a la base de datos');
+  } else {
+    console.log('Contectado a postgres');
+  }
+});
 
 app.get('/', (req, res) => {
   res.send(`
