@@ -18,12 +18,7 @@ const client = new Client({
   password: '123456',
 });
 
-client.connect((err) => {
-  client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
-    console.log(err ? err.stack : res.rows[0].message);
-    client.end();
-  });
-});
+client.connect();
 
 app.get('/', (req, res) => {
   res.send(`

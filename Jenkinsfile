@@ -128,7 +128,7 @@ pipeline {
       steps {
         container('helm') {
           script {
-            sh "if ! helm repo list | grep -q bitnami; then helm repo add bitnami https://charts.bitnami.com/bitnami;fi"
+            sh "helm repo add bitnami https://charts.bitnami.com/bitnami"
             sh "helm dependency build chart/testing/"
             sh "helm upgrade --install testing chart/testing/ -f chart/testing/values.yaml -n apps --set image.tag=${VERSION_BUILD}"
           }
