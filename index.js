@@ -8,11 +8,11 @@ const NODE_USER = process.env.NODE_USER || 'fake';
 const NODE_PASS = process.env.NODE_PASS || 'fake';
 const TOKEN = process.env.TOKEN || 'fake';
 const PG_HOST = process.env.TESTING_POSTGRESQL_SERVICE_HOST;
-const PG_PORT = process.env.TESTING_POSTGRESQL_SERVICE_PORT;
+// const PG_PORT = process.env.TESTING_POSTGRESQL_SERVICE_PORT;
 
 const client = new Client({
-  host: PG_HOST,
-  port: PG_PORT,
+  host: process.env.TESTING_POSTGRESQL_SERVICE_HOST,
+  port: process.env.TESTING_POSTGRESQL_SERVICE_PORT,
   database: 'pepe_db',
   user: 'pepe',
   password: '123456',
@@ -20,7 +20,7 @@ const client = new Client({
 
 client.connect((err) => {
   if (err) {
-    console.log('Error de conexion a la base de datos');
+    console.error('Error de conexion a la base de datos');
   } else {
     console.log('Contectado a postgres');
   }
