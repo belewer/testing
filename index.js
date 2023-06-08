@@ -12,8 +12,8 @@ const PG_PORT = process.env.TESTING_POSTGRESQL_SERVICE_PORT;
 const {Client} = require('pg');
 
 const client = new Client({
-  host: process.env.TESTING_POSTGRESQL_SERVICE_HOST,
-  port: process.env.TESTING_POSTGRESQL_SERVICE_PORT,
+  host: PG_HOST,
+  port: PG_PORT,
   database: 'josedb',
   user: 'jose',
   password: '20admin88',
