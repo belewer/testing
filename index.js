@@ -1,5 +1,4 @@
 const express = require('express');
-const {Client} = require('pg');
 
 const app = express();
 app.disable('x-powered-by');
@@ -10,12 +9,15 @@ const TOKEN = process.env.TOKEN || 'fake';
 const PG_HOST = process.env.TESTING_POSTGRESQL_SERVICE_HOST;
 const PG_PORT = process.env.TESTING_POSTGRESQL_SERVICE_PORT;
 
+const {Client} = require('pg');
+
 const client = new Client({
   host: process.env.TESTING_POSTGRESQL_SERVICE_HOST,
   port: process.env.TESTING_POSTGRESQL_SERVICE_PORT,
   database: 'josedb',
   user: 'jose',
   password: '20admin88',
+  ssl: false,
 });
 
 client.connect((err) => {

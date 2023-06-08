@@ -26,6 +26,8 @@ postgresql:
           adminPasswordKey: ""
           userPasswordKey: ""
           replicationPasswordKey: ""
+  serviceBindings:
+    enabled: true
 
 
 replicaCount: 1
